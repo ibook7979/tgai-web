@@ -79,35 +79,45 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes tickerUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+        @keyframes tgaiSmoothRoll {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(0, -50%, 0);
+            }
         }
-        .animate-live {
+        .tgai-motion-window {
+            position: relative;
+            height: 124px;
+            overflow: hidden;
+        }
+        #hero-live-feed,
+        #hero-live-feed.animate-live,
+        #hero-live-feed.animate-live-expanded,
+        .animate-live,
+        .animate-live-expanded {
+            display: flex !important;
+            flex-direction: column !important;
+            animation-name: tgaiSmoothRoll !important;
+            animation-duration: 20s !important;
+            animation-timing-function: linear !important;
+            animation-iteration-count: infinite !important;
+            animation-play-state: running !important;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+        .tgai-feed-row {
             display: flex;
-            flex-direction: column;
-            animation: tickerUp 16s linear infinite;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 3px 6px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
         }
-        .animate-live:hover { animation-play-state: paused; }
-
-        @media (max-width: 639px) {
-            .tgai-top-phones {
-                display: flex;
-                flex-wrap: nowrap;
-                align-items: center;
-                justify-content: center;
-                gap: 6px;
-                width: 100%;
-                white-space: nowrap;
-                font-size: clamp(9px, 2.65vw, 11px);
-                letter-spacing: -0.03em;
-            }
-            .tgai-top-phones a,
-            .tgai-top-phones strong,
-            .tgai-top-phones span {
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
+        .tgai-feed-row:hover {
+            background: rgba(34, 211, 238, 0.08);
         }
 
     </style>
@@ -121,10 +131,10 @@
                 <span class="w-2 h-2 rounded-full bg-teal-500 inline-block"></span>
                 <span>TGAI · 판교R&amp;D센터 · 광주R&amp;D센터 · 대한민국4차산업협회</span>
             </div>
-            <div class="tgai-top-phones flex items-center gap-4">
-                <a href="tel:0507-1432-7120" class="hover:text-cyan-400 transition">R&amp;D·산학협력: <strong class="text-white">0507-1432-7120</strong></a>
-                <span class="text-slate-700">|</span>
-                <a href="tel:0507-1357-8291" class="hover:text-amber-400 transition">협회·통합스토어: <strong class="text-amber-400">0507-1357-8291</strong></a>
+            <div class="flex flex-nowrap items-center gap-2 max-sm:whitespace-nowrap max-sm:text-[10px] sm:gap-4 sm:text-xs">
+                <a href="tel:0507-1432-7120" class="hover:text-cyan-400 transition max-sm:shrink-0">R&amp;D·산학협력: <strong class="text-white">0507-1432-7120</strong></a>
+                <span class="text-slate-700 max-sm:shrink-0">|</span>
+                <a href="tel:0507-1357-8291" class="hover:text-amber-400 transition max-sm:shrink-0">협회·통합스토어: <strong class="text-amber-400">0507-1357-8291</strong></a>
             </div>
         </div>
     </div>
@@ -297,28 +307,57 @@
                                         <span>주요 운영 영역 및 공식 안내 현황</span>
                                         <span class="text-cyan-400">운영 안내</span>
                                     </div>
-                                    <div class="h-24 overflow-hidden relative">
+                                    <div class="tgai-motion-window">
                                         <div id="hero-live-feed" class="animate-live space-y-2.5 text-xs">
-                                            <div class="flex items-center justify-between">
+                                            <div class="tgai-feed-row">
                                                 <span class="text-slate-200"><strong class="text-amber-400">[스마트농업·로봇]</strong> 자율주행 방제 및 정밀 농업 상담 운영</span>
                                                 <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-bold">B2B 안내</span>
                                             </div>
-                                            <div class="flex items-center justify-between">
+                                            <div class="tgai-feed-row">
                                                 <span class="text-slate-200"><strong class="text-cyan-400">[4차산업협회]</strong> 자격 과정 및 전문 강사·명사 등록 안내</span>
                                                 <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-bold">협회 연계</span>
                                             </div>
-                                            <div class="flex items-center justify-between">
+                                            <div class="tgai-feed-row">
                                                 <span class="text-slate-200"><strong class="text-emerald-400">[TGAI 스토어]</strong> 교육 교구·표준 교재 및 장비 연계 안내</span>
                                                 <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-bold">통합몰</span>
                                             </div>
-                                            <div class="flex items-center justify-between">
+                                            <div class="tgai-feed-row">
                                                 <span class="text-slate-200"><strong class="text-indigo-400">[AI·GIS R&amp;D]</strong> 업무 자동화 및 공간정보 입지 분석 상담</span>
                                                 <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-300 font-bold">R&amp;D 상담</span>
                                             </div>
-                                            <div class="flex items-center justify-between">
+                                            <div class="tgai-feed-row">
                                                 <span class="text-slate-200"><strong class="text-amber-400">[공식 채널]</strong> 카카오톡 채널 및 대표 메일 상시 접수</span>
                                                 <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-bold">상담 창구</span>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="toggleRollingQuickAdd()"
+                                            class="hidden mt-3 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition">
+                                        공지 추가
+                                    </button>
+                                    <div id="tgai-rolling-quick-add" class="hidden mt-3 p-3 rounded-xl bg-slate-900/80 border border-slate-700 space-y-2">
+                                        <input id="rolling-tag-input" type="text" placeholder="[공지 분류]"
+                                               class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                        <input id="rolling-badge-input" type="text" placeholder="배지 문구"
+                                               class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                        <select id="rolling-tone-input"
+                                                class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                            <option value="amber">Amber</option>
+                                            <option value="cyan">Cyan</option>
+                                            <option value="emerald">Emerald</option>
+                                            <option value="indigo">Indigo</option>
+                                        </select>
+                                        <textarea id="rolling-text-input" rows="2" placeholder="공지 내용을 입력하세요"
+                                                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white"></textarea>
+                                        <div class="flex gap-2">
+                                            <button type="button" onclick="handleQuickRollingAdd()"
+                                                    class="flex-1 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold">
+                                                공지 추가
+                                            </button>
+                                            <button type="button" onclick="copyRollingItemsJson()"
+                                                    class="flex-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold">
+                                                JSON 복사
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -556,21 +595,32 @@
                             </div>
                         </div>
 
-                        <!-- 상품 4: 대량 납품·출판 제휴 카드 -->
-                        <div class="amz-glass rounded-2xl p-5 flex flex-col justify-between border-amber-500/30 bg-gradient-to-b from-amber-500/10 to-slate-950">
+                        <!-- 상품 4: 강사 스타터 패키지 · 기관 대량 납품 · 통합몰 직통 결제 카드 -->
+                        <div class="amz-glass rounded-2xl p-5 flex flex-col justify-between border-amber-500/40 bg-gradient-to-b from-amber-500/15 to-slate-950">
                             <div class="space-y-3">
-                                <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-truck-fast"></i>
+                                <div class="flex items-center justify-between">
+                                    <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-boxes-stacked"></i>
+                                    </div>
+                                    <span class="px-2.5 py-0.5 rounded bg-amber-500 text-slate-950 font-black text-[10px]">묶음·기관 전용</span>
                                 </div>
-                                <span class="text-[11px] font-extrabold text-amber-400 uppercase">B2B BULK SUPPLY</span>
-                                <h4 class="text-lg font-black text-white">학교 · 교육원 · 기관 전용 대량 공급</h4>
+                                <span class="text-[11px] font-extrabold text-amber-400 uppercase block">EDU &amp; B2B DIRECT ORDER</span>
+                                <h4 class="text-lg font-black text-white">강사 스타터 세트 · 기관 대량 납품</h4>
                                 <p class="text-xs text-slate-300 leading-relaxed">
-                                    방과후 학교, 협회 및 지자체 교육 사업에 필요한 교재·교구 및 스마트 장비를 합리적인 표준 공급가로 원스톱 납품합니다.
+                                    대한민국4차산업협회 위촉 강사용 10·20·30인 학급 패키지 및 학교·복지관·기업 도입 장비 견적을 통합 스토어에서 원스톱 처리합니다.
                                 </p>
                             </div>
-                            <button onclick="openLeadModal('기관·학교 교재 및 장비 대량 납품 문의')" class="mt-5 w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs transition">
-                                기관 납품 단가표 요청
-                            </button>
+                            <div class="mt-5 space-y-2">
+                                <a href="https://ibook7979.cafe24.com" target="_blank" rel="noopener noreferrer"
+                                   class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs transition flex items-center justify-center gap-1.5">
+                                    <span>통합몰 묶음·납품관 바로가기</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                                </a>
+                                <button type="button" onclick="openLeadModal('기관·학교 교재 및 장비 대량 납품 견적 문의')"
+                                        class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold text-xs transition">
+                                    세금계산서 · 기관 단가표 요청
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -876,18 +926,24 @@
     </div>
 
     <!-- 우측 하단 플로팅 상담 버튼 -->
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
-        <a href="http://pf.kakao.com/_snQNX" target="_blank" rel="noopener noreferrer" aria-label="TGAI 카카오톡 상담"
-           class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FEE500] text-[#191919] shadow-lg hover:scale-105 transition">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.71 6.73-.15.56-.96 3.55-1 3.7 0 .19.07.37.24.47.14.09.32.09.46-.01.61-.42 3.54-2.38 4.1-2.76.49.07.99.11 1.49.11 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
-            </svg>
-        </a>
-        <button onclick="openLeadModal('빠른 도입 견적 및 수강 상담')"
-                class="flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black text-xs shadow-2xl shadow-cyan-500/30 transition hover:scale-105">
-            <i class="fa-solid fa-headset text-sm"></i>
-            <span>빠른 견적 · 상담</span>
-        </button>
+    <div class="fixed bottom-6 right-6 z-40">
+        <div class="flex flex-col items-end gap-2.5">
+            <a href="https://pf.kakao.com/_snQNX" target="_blank" rel="noopener noreferrer"
+               class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#FEE500] hover:bg-[#FDD835] flex items-center justify-center shadow-lg shadow-black/40 transition hover:scale-105"
+               aria-label="카카오톡 채널 상담"
+               title="카카오톡 1:1 채널 상담">
+                <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12 3C6.477 3 2 6.463 2 10.736c0 2.762 1.835 5.188 4.598 6.564-.153.553-.986 3.558-1.018 3.788 0 0-.02.167.088.231.108.064.235.015.235.015.31-.043 3.59-2.345 4.156-2.745.629.09 1.278.138 1.941.138 5.523 0 10-3.463 10-7.991C22 6.463 17.523 3 12 3Z" fill="#3C1E1E"/>
+                    <text x="12" y="12.7" text-anchor="middle" fill="#FEE500" font-family="Arial, sans-serif" font-weight="900" font-size="5.4" letter-spacing="-0.2">TALK</text>
+                </svg>
+            </a>
+
+            <button type="button" onclick="openLeadModal('빠른 도입 견적 및 수강 상담')"
+                    class="group flex items-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-slate-900 hover:bg-sky-600 text-white font-black text-xs shadow-xl shadow-slate-900/25 border border-sky-400/30 transition-all duration-200 hover:scale-105">
+                <i class="fa-solid fa-headset w-4 h-4 text-sky-300 group-hover:text-white shrink-0"></i>
+                <span>빠른 견적 · 상담</span>
+            </button>
+        </div>
     </div>
 
     <script>
@@ -1178,5 +1234,6 @@
             btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
         }
     </script>
+    <script src="./rolling-feed.js" defer></script>
 </body>
 </html>
